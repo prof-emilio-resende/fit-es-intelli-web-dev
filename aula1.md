@@ -2,11 +2,11 @@
 ## Aula 1: Fundamentos e Ferramentas
 
 **Faculdade Impacta · Pós-Graduação em Engenharia de Software**
-**Prof. Emilio Murta Resende** · emilio.resende@faculdadeimpacta.com.br
+**Prof. Emilio Murta Resende** · emilio.resende@impacta.com.br
 
 ---
 
-> ### 📌 Como usar esta apostila
+> ### 📌 Como usar este material
 > Este material foi pensado para ser lido **junto com a aula**, não depois. Cada seção acompanha um momento da discussão. Os blocos em destaque são pontos que merecem pausa e reflexão. Os blocos de código são para copiar e experimentar.
 
 ---
