@@ -8,3 +8,19 @@ a3/examples/monolito-next/node_modules/
 a3/examples/mfe-next-iframe/node_modules/
 
 a3/examples/mfe-next-iframe/.next/
+
+a3/examples/shared-ui/node_modules/
+
+a3/examples/shared-ui/dist/
+
+a3/examples/next-shared-lib/.next/
+
+a3/examples/next-shared-lib/node_modules/
+
+a3/examples/mfe-next-mf/node_modules/
+
+a3/examples/mfe-next-mf/.next/
+
+a3/examples/mfe-footer-remote/.next/
+
+a3/examples/mfe-footer-remote/node_modules/
