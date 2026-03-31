@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Footer MFE</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /*
+      body sem background para o iframe se misturar
+      visualmente com a página que o hospeda.
+    */
+    body {
+      background: transparent;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    footer {
+      border-top: 1px solid #e5e7eb;
+      background: #ffffff;
+      padding: 24px;
+      text-align: center;
+      font-size: 0.875rem;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+  <footer>
+    © <span id="year"></span> MyApp. Todos os direitos reservados.
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear()
+  </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<!--
+  Fragment: footer
+  Mantido e deployado independentemente.
+  O servidor injeta este arquivo em qualquer página que use:
+  <!--#include file="fragments/footer.html" -->
+-->
+<footer class="border-t border-gray-200 bg-white py-6 text-center text-sm text-gray-400">
+  © <span id="year"></span> MyApp. Todos os direitos reservados.
+  <script>document.getElementById('year').textContent = new Date().getFullYear()</script>
+</footer>

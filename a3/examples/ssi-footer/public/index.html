@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro — SSI</title>
+  <!-- Tailwind via CDN para manter paridade visual com o exemplo monolito-next -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-50 text-gray-900 flex flex-col">
+
+  <!-- Header: inline nesta página -->
+  <header>
+    <nav class="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+      <span class="text-lg font-semibold text-gray-900">MyApp</span>
+      <ul class="flex gap-6 text-sm text-gray-600">
+        <li><a href="#" class="hover:text-gray-900 transition-colors">Início</a></li>
+        <li><a href="#" class="hover:text-gray-900 transition-colors">Sobre</a></li>
+        <li><a href="#" class="hover:text-gray-900 transition-colors">Contato</a></li>
+      </ul>
+    </nav>
+    <div class="bg-gray-900 text-white text-center py-20 px-4">
+      <h1 class="text-4xl font-bold tracking-tight mb-3">Crie sua conta</h1>
+      <p class="text-gray-400 text-lg">Preencha o formulário abaixo para começar.</p>
+    </div>
+  </header>
+
+  <!-- Form: inline nesta página -->
+  <main class="flex-1 flex items-center justify-center py-16 px-4">
+    <div class="w-full max-w-md">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-6">Cadastro</h2>
+
+      <div id="success-msg" class="hidden mb-4 text-sm text-green-700 bg-green-50 border border-green-200 rounded px-3 py-2">
+        Cadastro realizado com sucesso!
+      </div>
+
+      <form id="cadastro-form" novalidate class="flex flex-col gap-5">
+        <!-- Nome completo -->
+        <div class="flex flex-col gap-1">
+          <label for="nomeCompleto" class="text-sm font-medium text-gray-700">Nome completo</label>
+          <input id="nomeCompleto" type="text" placeholder="Ana Silva"
+            class="border border-gray-300 rounded px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-gray-900 transition" />
+          <span id="err-nome" class="hidden text-xs text-red-500"></span>
+        </div>
+
+        <!-- E-mail -->
+        <div class="flex flex-col gap-1">
+          <label for="email" class="text-sm font-medium text-gray-700">E-mail</label>
+          <input id="email" type="email" placeholder="ana@email.com"
+            class="border border-gray-300 rounded px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-gray-900 transition" />
+          <span id="err-email" class="hidden text-xs text-red-500"></span>
+        </div>
+
+        <!-- Telefone -->
+        <div class="flex flex-col gap-1">
+          <label for="telefone" class="text-sm font-medium text-gray-700">Telefone</label>
+          <input id="telefone" type="tel" placeholder="(11) 91234-5678"
+            class="border border-gray-300 rounded px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-gray-900 transition" />
+          <span id="err-telefone" class="hidden text-xs text-red-500"></span>
+        </div>
+
+        <button type="submit"
+          class="mt-2 bg-gray-900 text-white text-sm font-medium py-2.5 rounded hover:bg-gray-700 transition-colors">
+          Cadastrar
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!--
+    Footer: injetado pelo servidor via SSI.
+    O browser recebe o HTML já montado — a diretiva abaixo
+    nunca chega ao cliente, apenas o conteúdo de footer.html.
+  -->
+  <!--#include file="fragments/footer.html" -->
+
+  <script>
+    const form    = document.getElementById('cadastro-form')
+    const success = document.getElementById('success-msg')
+
+    function showError(id, msg) {
+      const el = document.getElementById(id)
+      el.textContent = msg
+      el.classList.remove('hidden')
+    }
+
+    function clearErrors() {
+      ['err-nome', 'err-email', 'err-telefone'].forEach(id => {
+        document.getElementById(id).classList.add('hidden')
+      })
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+      clearErrors()
+      success.classList.add('hidden')
+
+      const nome     = document.getElementById('nomeCompleto').value.trim()
+      const email    = document.getElementById('email').value.trim()
+      const telefone = document.getElementById('telefone').value.trim()
+      let valid = true
+
+      if (nome.length < 3) {
+        showError('err-nome', nome ? 'Mínimo 3 caracteres' : 'Nome é obrigatório')
+        valid = false
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('err-email', email ? 'E-mail inválido' : 'E-mail é obrigatório')
+        valid = false
+      }
+      if (!/^\(?\d{2}\)?[\s-]?\d{4,5}-?\d{4}$/.test(telefone)) {
+        showError('err-telefone', telefone ? 'Telefone inválido' : 'Telefone é obrigatório')
+        valid = false
+      }
+
+      if (valid) {
+        console.log('Cadastro:', { nome, email, telefone })
+        form.reset()
+        success.classList.remove('hidden')
+      }
+    })
+  </script>
+
+</body>
+</html>
