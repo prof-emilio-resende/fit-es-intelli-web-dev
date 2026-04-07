@@ -1,0 +1,19 @@
+{
+  "name": "blockchain",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --require ts-node/register --test index.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "crypto": "^1.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.2"
+  }
+}
